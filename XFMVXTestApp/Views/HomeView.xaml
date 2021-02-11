@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:XFMVXTestApp.XF.Views"
+    x:Class="XFMVXTestApp.XF.Views.HomeView">
+    <views:MvxContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="MainPageButtonStyle"
+                   TargetType="Button">
+                <Setter Property="BackgroundColor"
+                        Value="#FC9100" />
+                <Setter Property="FontSize"
+                        Value="{OnIdiom Tablet=20, Phone=16}" />
+                <Setter Property="TextTransform"
+                        Value="None" />
+            </Style>
+        </ResourceDictionary>
+    </views:MvxContentPage.Resources>
+    <ScrollView BackgroundColor="Gray">
+        <StackLayout Padding="10,0" Spacing="10">
+            <Label
+                Text="See ReadMe.rtf for usage"
+                Margin="0,6,0,0"
+                FontAttributes="Bold"
+                FontSize="{OnIdiom Tablet=24, Phone=20}"
+                HorizontalTextAlignment="Center"/>
+
+            <Grid BackgroundColor="DarkGray"
+                  Padding="{OnIdiom Tablet=12, Phone=8}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Style="{StaticResource MainPageButtonStyle}"
+                    Text="Show ListView Test"
+                    Command="{Binding ShowListViewCommand}"/>
+                <Label
+                    Grid.Column="1"
+                    Margin="{OnIdiom Tablet='24,0,0,0', Phone='16,0,0,0'}"
+                    VerticalOptions="Center"
+                    Text="Items:"
+                    FontSize="{OnIdiom Tablet=20, Phone=16}"
+                    HorizontalTextAlignment="Center"/>
+                <Entry 
+                    Grid.Column="2"
+                    WidthRequest="{OnIdiom Tablet=80, Phone=70}"
+                    FontSize="{OnIdiom Tablet=20, Phone=14}"
+                    Keyboard="Numeric"
+                    Text="{Binding NumberOfItems, Mode=TwoWay}"/>    
+            </Grid>
+
+            <Grid BackgroundColor="DarkGray"
+                  Padding="{OnIdiom Tablet=12, Phone=8}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button 
+                    Style="{StaticResource MainPageButtonStyle}"
+                    Text="Show ListViewGrouping Test"
+                    Command="{Binding ShowListViewGroupingCommand}"/>
+                <Label
+                    Grid.Column="1"
+                    Margin="{OnIdiom Tablet='10,0,0,0', Phone='4,0,0,0'}"
+                    VerticalOptions="Center"
+                    Text="Groups:"
+                    FontSize="{OnIdiom Tablet=20, Phone=16}"
+                    HorizontalTextAlignment="Center"/>
+                <Entry 
+                    Grid.Column="2"
+                    WidthRequest="{OnIdiom Tablet=80, Phone=70}"
+                    FontSize="{OnIdiom Tablet=20, Phone=14}"
+                    Keyboard="Numeric"
+                    Text="{Binding NumberOfGroups, Mode=TwoWay}"/>    
+            </Grid>
+
+            <Grid BackgroundColor="DarkGray"
+                  Padding="{OnIdiom Tablet=12, Phone=8}">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Button
+                    Style="{StaticResource MainPageButtonStyle}"
+                    Text="Show CollectionView Test"
+                    Command="{Binding ShowCollectionViewCommand}"/>
+                <Label
+                    Grid.Column="1"
+                    Margin="{OnIdiom Tablet='24,0,0,0', Phone='16,0,0,0'}"
+                    VerticalOptions="Center"
+                    Text="Items:"
+                    FontSize="{OnIdiom Tablet=20, Phone=16}"
+                    HorizontalTextAlignment="Center"/>
+                <Entry 
+                    Grid.Column="2"
+                    WidthRequest="{OnIdiom Tablet=80, Phone=70}"
+                    FontSize="{OnIdiom Tablet=20, Phone=14}"
+                    Keyboard="Numeric"
+                    Text="{Binding NumberOfCollectionViewItems, Mode=TwoWay}"/>    
+            </Grid>
+
+            <Button 
+                Style="{StaticResource MainPageButtonStyle}"
+                Text="Show Memory Usage"
+                BackgroundColor="Lime"
+                Command="{Binding ShowMemoryUsageCommand}"/>
+
+            <Label
+                Padding="8,0"
+                Margin="0,0,0,20"
+                BackgroundColor="LightGray"
+                FontFamily="Courier"
+                Text="{Binding DebugInfo}"/>
+
+        </StackLayout>
+    </ScrollView>
+</views:MvxContentPage>

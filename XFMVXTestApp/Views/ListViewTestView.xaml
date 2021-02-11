@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<views:MvxContentPage
+    xmlns="http://xamarin.com/schemas/2014/forms" 
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:views="clr-namespace:MvvmCross.Forms.Views;assembly=MvvmCross.Forms"
+    xmlns:vms="clr-namespace:XFMVXTestApp.Core.ViewModels;assembly=XFMVXTestApp.Core"
+    xmlns:vc="clr-namespace:XFMVXTestApp.XF.ValueConverters"
+    mc:Ignorable="d"
+    x:Class="XFMVXTestApp.XF.Views.ListViewTestView"
+    x:Name="RootLayout">
+    <views:MvxContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="TestListViewItemTemplate">
+                <ViewCell>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TestListViewItemTemplate_Tapped" />
+                        </Grid.GestureRecognizers>
+                        <Label Grid.Column="0"
+                               HeightRequest="{Binding Height}"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"
+                               VerticalTextAlignment="Center"
+                               FontSize="{OnPlatform iOS=20, Android=16}"
+                               Text="{Binding SequenceNumber}"
+                               TextColor="Black"
+                               Margin="20,10"/>
+
+                        <Label Grid.Column="1"
+                               Text="{Binding CreatedTime}"
+                               VerticalTextAlignment="Center"
+                               Margin="20,10"/>
+                    </Grid>
+                </ViewCell>
+            </DataTemplate>
+        </ResourceDictionary>
+    </views:MvxContentPage.Resources>
+
+    <StackLayout BackgroundColor="DarkGray">
+        <Label Text="ListView Test"
+               Margin="0,6,0,0"
+               FontAttributes="Bold"
+               FontSize="{OnIdiom Tablet=30, Phone=24}"
+               HorizontalTextAlignment="Center"/>
+
+        <ListView x:Name="TestListView"
+                  Margin="0"
+                  BackgroundColor="White"
+                  ItemTemplate="{StaticResource TestListViewItemTemplate}"
+                  CachingStrategy="RetainElement"
+                  IsGroupingEnabled="False"
+                  SelectionMode="None"
+                  ItemsSource="{Binding TestItemsCollection, Source={x:Reference RootLayout}}"
+                  HasUnevenRows="True"/>
+    </StackLayout>
+</views:MvxContentPage>
