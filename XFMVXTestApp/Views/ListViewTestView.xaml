@@ -57,7 +57,7 @@
                   CachingStrategy="RetainElement"
                   IsGroupingEnabled="False"
                   SelectionMode="None"
-                  ItemsSource="{Binding TestItemsCollection, Source={x:Reference RootLayout}}"
+                  ItemsSource="{Binding TestItems}"
                   HasUnevenRows="True"/>
     </StackLayout>
 </views:MvxContentPage>
