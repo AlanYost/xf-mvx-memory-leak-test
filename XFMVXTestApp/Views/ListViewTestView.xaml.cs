@@ -13,7 +13,7 @@ namespace XFMVXTestApp.XF.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class ListViewTestView : MvxContentPage
     {
-        public ObservableCollection<TestItem> TestItemsCollection { get; } = new ObservableCollection<TestItem>();
+  //      public ObservableCollection<TestItem> TestItemsCollection { get; } = new ObservableCollection<TestItem>();
 
         private ListViewTestViewModel CurrentViewModel
         {
@@ -43,27 +43,29 @@ namespace XFMVXTestApp.XF.Views
             try
             {
                 TestListView.BeginRefresh();
-               // TestListView.ItemsSource = null;
+                // TestListView.ItemsSource = null;
+                int count = CurrentViewModel.TestItems.Count;
 
-                TestItemsCollection.Clear();
+                CurrentViewModel.TestItems.Clear();
 
-                foreach (var record in CurrentViewModel.TestItems)
-                {
-                    if (CurrentViewModel.IsExpanded || (int.Parse(record.SequenceNumber) % 2 == 0))
-                    {
-                        TestItemsCollection.Add(record);
-                    }
+                CurrentViewModel.Prepare(new ListViewTestParameter(count, CurrentViewModel.IsExpanded));
+                //foreach (var record in CurrentViewModel.TestItems)
+                //{
+                //    if (CurrentViewModel.IsExpanded || (int.Parse(record.SequenceNumber) % 2 == 0))
+                //    {
+                //        CurrentViewModel.TestItems.Add(record);
+                //    }
 
-                    //if (CurrentViewModel.IsExpanded && CurrentViewModel.TestItems.Count > TestItemsCollection.Count)
-                    //{
-                    //    TestItemsCollection.Add(record);
-                    //}
-                    //else if(!CurrentViewModel.IsExpanded && TestItemsCollection.Count >= CurrentViewModel.TestItems.Count)
-                    //{
-                    //    TestItemsCollection.RemoveAt(0);
-                    //}
+                //    //if (CurrentViewModel.IsExpanded && CurrentViewModel.TestItems.Count > TestItemsCollection.Count)
+                //    //{
+                //    //    TestItemsCollection.Add(record);
+                //    //}
+                //    //else if(!CurrentViewModel.IsExpanded && TestItemsCollection.Count >= CurrentViewModel.TestItems.Count)
+                //    //{
+                //    //    TestItemsCollection.RemoveAt(0);
+                //    //}
 
-                }
+                //}
             }
             catch (Exception ex)
             {
