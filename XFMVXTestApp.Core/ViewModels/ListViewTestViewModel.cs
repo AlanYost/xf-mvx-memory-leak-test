@@ -11,7 +11,7 @@ namespace XFMVXTestApp.Core.ViewModels
     public class ListViewTestViewModel : BaseViewModel, IMvxViewModel<ListViewTestParameter>
     {
         #region Properties
-
+        
         private int _number;
         public int Number
         {
@@ -60,12 +60,12 @@ namespace XFMVXTestApp.Core.ViewModels
             _messenger = messenger; 
         }
 
-        public override void ViewAppeared()
-        {
-            base.ViewAppeared();
+        //public override void ViewAppeared()
+        //{
+        //    base.ViewAppeared();
 
-            RaisePropertyChanged(() => TestItemsUpdated);
-        }
+        //    RaisePropertyChanged(() => TestItemsUpdated);
+        //}
 
         public override async Task Initialize()
         {
@@ -74,19 +74,26 @@ namespace XFMVXTestApp.Core.ViewModels
 
         public void Prepare(ListViewTestParameter parameter)
         {
-            PopulateTestItems(parameter.NumberOfItems);
+            if (Number == 0)
+            {
+                Number = parameter.NumberOfItems;
+            }
+            PopulateTestItems(Number);
         }
 
         private void PopulateTestItems(int numberOfItems)
         {
             for (int i = 1; i <= numberOfItems; i++)
             {
-                TestItems.Add(new TestItem()
+                if (IsExpanded || (i % 2 == 0))
                 {
-                    Height = 20 + 10 * (i % 5),
-                    SequenceNumber = i.ToString(),
-                    CreatedTime = DateTime.Now.ToString("HH:mm:ss.fff")
-                });
+                    TestItems.Add(new TestItem()
+                    {
+                        Height = 20 + 10 * (i % 5),
+                        SequenceNumber = i.ToString(),
+                        CreatedTime = DateTime.Now.ToString("HH:mm:ss.fff")
+                    });
+                }
             }
         }
     }
